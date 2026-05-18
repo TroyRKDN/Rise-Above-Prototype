@@ -100,6 +100,19 @@ const legacyRedirects = [
   ["store.html", "donate.html", "Store"],
 ];
 
+const legacySourcePaths = {
+  "support-services.html": "/directory/support-services",
+  "corporate-partnerships.html": "/partner-with-us",
+  "community-partners.html": "/community-partners",
+  "foundation-partners.html": "/foundation-partners",
+  "charity-partners.html": "/charity-partners",
+  "supporters.html": "/supporters",
+  "life-members.html": "/life-members",
+  "ambassadors-patrons.html": "/ambassadors-patrons",
+  "member.html": "/member",
+  "store.html": "/store",
+};
+
 function esc(value = "") {
   return String(value)
     .replace(/&/g, "&amp;")
@@ -258,13 +271,22 @@ function basePages() {
   const partnerIntro = pick("/partner-with-us", [/working together/, /currently supports/, /Your organisation can be a partner/], 4);
   const volunteerIntro = pick("/volunteer", [/When you volunteer/, /Volunteers form/, /Our volunteering model/, /Due to patients/], 4);
   const eventsIntro = pick("/join-an-event", [/Be part of something powerful/, /Explore our upcoming events/, /Throughout the year/, /Want to host/], 4);
-  const referIntro = pick("/refer", [/Know someone/, /permission/, /committed to ensuring/], 3);
+  const referIntro = [
+    "Know someone diagnosed with cancer? Rise Above provides a simple referral pathway so a friend, family member or patient can be connected with support.",
+    "Rise Above asks referrers to confirm they have the patient or loved one's permission before sending details through.",
+    "Once details are submitted, Rise Above emails the patient information about available support and next steps.",
+  ];
   const storyIntro = [
     "The Cancer Support Group (Rise Above) began in 1985 when Yvonne Cuschieri started raising funds to enable 13 local teenagers to attend a CanTeen national camp.",
     "We adopted the name Rise Above – Capital Region Cancer Relief in 2017 to focus on supporting patients from the Capital Region to rise above and fight cancer.",
     "Today, Rise Above assists hundreds of patients yearly and looks for opportunities to lessen the surrounding financial burden of cancer for patients and their loved ones.",
   ];
-  const contactIntro = pick("/contact", [/Do you need help/, /Phone:/, /Address:/], 3);
+  const contactIntro = [
+    "Do you need help fighting the cost of cancer, want to support local cancer patients, or want to volunteer?",
+    "Pop some details into the contact form and Rise Above will be in touch. If you prefer to speak directly, the office phone number is 02 6297 1261.",
+    "Office address: 21 Cooma Street, Queanbeyan NSW 2620. Postal address: PO Box 1351, Queanbeyan NSW 2620.",
+    "For media enquiries or interview requests, contact hello@riseabovecbr.org.au.",
+  ];
 
   return [
     {
@@ -617,12 +639,19 @@ function basePages() {
       sourcePath: "/refer",
       heroTitle: "Information for Health Professionals",
       summary: "A dedicated referral pathway for clinicians, social workers and health professionals.",
-      lead: "Use the same support criteria and permission-first referral process.",
+      lead: "Help a patient connect with practical financial support for the surrounding costs of cancer.",
       paragraphs: [
-        "This new page is based on existing referral and financial assistance guidance.",
-        "Health professionals should confirm patient permission before submitting details.",
-        "Questions can be directed to the Rise Above office on 6297 1261 or assistance@riseabovecbr.org.au.",
+        "Rise Above supports cancer patients in the Canberra, Queanbeyan and surrounding Capital Region with practical financial assistance for surrounding expenses such as groceries, petrol, electricity and other household pressures.",
+        "The current referral pathway asks that a referrer has the patient or loved one's permission before sending details through to Rise Above. That same consent-first approach should be retained for health professionals.",
+        "Rise Above assists patients of all ages and cancer types. The current site also states that Rise Above does not means test because cancer does not discriminate.",
+        "After a referral is received, Rise Above can email the patient information about available support and next steps. Questions can be directed to the office on 6297 1261 or assistance@riseabovecbr.org.au.",
       ],
+      cards: [
+        ["Who can refer", "Clinicians, social workers, practice staff and other health professionals can use this pathway when they have patient consent."],
+        ["What support covers", "Practical assistance can relate to food, petrol, electricity, medication-related expenses and other surrounding pressures listed by Rise Above."],
+        ["Before submitting", "Confirm consent, gather contact details and include enough context for the Rise Above team to follow up appropriately."],
+      ],
+      cta: ["Refer a Patient", "refer.html"],
     },
     {
       file: "required-documentation.html",
@@ -633,10 +662,15 @@ function basePages() {
       lead: "Keep the form simple and tell people what to prepare before they start.",
       paragraphs: [
         "The current source content confirms that patients can register for assistance through the financial assistance form.",
-        "This page should list any exact documentation requirements from the existing operational form before production launch.",
+        "Indicative requirements for this prototype include patient contact details, confirmation of cancer diagnosis or care context, and a clear description of the support being requested.",
+        "Final documentation requirements should be confirmed from Rise Above's existing operational form before production launch.",
         "Until confirmed, direct questions to 6297 1261 or assistance@riseabovecbr.org.au.",
       ],
-      formNote: "Documentation checklist to be completed from the live form fields before implementation.",
+      cards: [
+        ["Contact details", "Name, phone, email and preferred contact method for the patient or authorised contact."],
+        ["Support request", "A short explanation of the practical cost pressure, such as petrol, groceries, electricity or another surrounding expense."],
+        ["Consent", "For referrals, confirmation that the patient has agreed to their details being sent to Rise Above."],
+      ],
     },
     {
       file: "referral-faqs.html",
@@ -737,8 +771,16 @@ function basePages() {
       heroTitle: "News & Updates",
       summary: "Stories, updates and community news from Rise Above.",
       lead: "News now sits under About rather than competing with urgent user pathways.",
-      paragraphs: ["The current News section includes stories, community grants, partner updates and patient/community features."],
-      formNote: "Existing news listing/filter functionality retained for prototype placement.",
+      paragraphs: [
+        "The current News section includes patient stories, community grants, partner updates and features from across the Rise Above community.",
+        "In the restructured navigation, News & Updates sits under About so it remains available without competing with urgent support, donation or referral pathways.",
+        "This page can surface a simple listing, featured story cards and filters once the existing news listing functionality is connected.",
+      ],
+      cards: [
+        ["Patient stories", "Human stories that explain why practical support matters."],
+        ["Community updates", "Fundraising, partner and grant news from across the region."],
+        ["Event stories", "Recaps and galleries from Rise Above and community events."],
+      ],
     },
     {
       file: "contact.html",
@@ -748,7 +790,7 @@ function basePages() {
       summary: "We love a good chat, let’s talk.",
       lead: "Contact Rise Above for help, volunteering, fundraising, partnerships or general enquiries.",
       paragraphs: contactIntro,
-      formNote: "Existing contact form retained for prototype placement.",
+      cards: [["Phone", "02 6297 1261"], ["Email", "hello@riseabovecbr.org.au"], ["Visit", "21 Cooma Street, Queanbeyan NSW 2620"]],
     },
     {
       file: "office-locations.html",
@@ -757,7 +799,12 @@ function basePages() {
       heroTitle: "Office Locations",
       summary: "Rise Above is based in Queanbeyan and supports Canberra, Queanbeyan and the surrounding Capital Region.",
       lead: "Office address",
-      paragraphs: ["Address: 21 Cooma Street, QUEANBEYAN, NSW, 2620", "Postal and map details should be retained from the current contact page when implemented."],
+      paragraphs: [
+        "Rise Above is based at 21 Cooma Street, Queanbeyan NSW 2620.",
+        "Postal address: PO Box 1351, Queanbeyan NSW 2620.",
+        "This page can hold the embedded map, parking guidance and arrival notes once those details are confirmed for the final site.",
+      ],
+      cards: [["Street address", "21 Cooma Street, Queanbeyan NSW 2620"], ["Postal address", "PO Box 1351, Queanbeyan NSW 2620"], ["Phone", "02 6297 1261"]],
     },
     {
       file: "opening-hours.html",
@@ -766,7 +813,12 @@ function basePages() {
       heroTitle: "Opening Hours",
       summary: "A dedicated place for office availability and response expectations.",
       lead: "Opening hours need confirmation before publishing.",
-      paragraphs: ["The current crawled content includes phone and address details but not verified opening hours.", "Until hours are confirmed, route users to phone 02 6297 1261 or the contact form."],
+      paragraphs: [
+        "The current public content includes contact details but does not provide verified office opening hours in the crawled source.",
+        "Indicative content can be used here in the prototype to show the intended layout while final hours are confirmed.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante facilisis, sed cursus neque gravida.",
+      ],
+      cards: [["Office hours", "Indicative placeholder pending confirmation."], ["Response time", "Use this space for expected response timing."], ["After-hours support", "For urgent medical help, call Triple Zero (000)."]],
     },
     {
       file: "request-callback.html",
@@ -775,8 +827,12 @@ function basePages() {
       heroTitle: "Request a Callback",
       summary: "A low-pressure contact option for people who would prefer the team to call them.",
       lead: "This is a new form requirement based on the existing contact pathway.",
-      paragraphs: ["Use the existing contact form pattern and add callback-specific fields once form handling is confirmed.", "For urgent medical or crisis help, use emergency or crisis support services rather than waiting for a callback."],
-      formNote: "New callback form required. Recommended fields: name, phone, preferred time, reason for callback, consent to contact.",
+      paragraphs: [
+        "A callback request gives stressed users a lower-pressure contact option while still reusing the existing contact form pattern.",
+        "Recommended fields include name, phone number, preferred contact time, reason for callback and consent to be contacted by Rise Above.",
+        "For urgent medical or crisis help, use emergency or crisis support services rather than waiting for a callback.",
+      ],
+      cards: [["Your details", "Name, phone and email."], ["Best time to call", "Morning, afternoon or a specific preferred time."], ["Reason for callback", "Financial assistance, referral, fundraising, volunteering, partnership or general enquiry."]],
     },
     {
       file: "general-enquiries.html",
@@ -786,7 +842,7 @@ function basePages() {
       summary: "For questions that are not about an immediate assistance application.",
       lead: "Use the current contact details and contact form.",
       paragraphs: ["Phone: 02 6297 1261", "Address: 21 Cooma Street, QUEANBEYAN, NSW, 2620", "Use this pathway for fundraising, volunteering, partnership or general questions."],
-      formNote: "Existing contact form retained for prototype placement.",
+      cards: [["Fundraising", "Ask about events, fundraising pages or community activities."], ["Volunteering", "Ask how to give time or support an event."], ["Partnerships", "Ask how an organisation can support Rise Above."]],
     },
     {
       file: "social-media.html",
@@ -953,8 +1009,8 @@ function homeBody() {
 }
 
 function standardBody(page) {
-  const paragraphs = page.paragraphs || [];
-  const cards = page.cards || [];
+  const paragraphs = page.paragraphs && page.paragraphs.length ? page.paragraphs : fallbackParagraphs(page);
+  const cards = page.cards && page.cards.length ? page.cards : fallbackCards(page);
   return `
     <section class="body-section">
       ${page.lead ? `<h2>${esc(page.lead)}</h2>` : ""}
@@ -963,6 +1019,25 @@ function standardBody(page) {
       ${cards.length ? `<div class="info-grid">${cards.map(card).join("")}</div>` : ""}
       ${page.cta ? `<div class="page-actions"><a class="btn btn-primary" href="${page.cta[1]}">${esc(page.cta[0])}</a></div>` : ""}
     </section>`;
+}
+
+function fallbackParagraphs(page) {
+  const sourced = cleanLines(page.sourcePath || "/").filter((line) => line.length > 35).slice(0, 3);
+  if (sourced.length) return sourced;
+  return [
+    "This prototype page reserves space for final approved content while showing how the page will read once copy is available.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante facilisis, sed cursus neque gravida.",
+    "Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla.",
+  ];
+}
+
+function fallbackCards(page) {
+  if (page.faq || page.template === "partners") return [];
+  return [
+    ["Primary information", `A short summary block for ${page.title.toLowerCase()} content.`],
+    ["What to do next", "A practical next step or contact pathway can be shown here."],
+    ["Related support", "This space can point visitors to another useful page in the new site structure."],
+  ];
 }
 
 function partnersBody(page) {
@@ -1051,6 +1126,33 @@ function redirectHtml(file, target, title) {
 </body>
 </html>
 `;
+}
+
+function legacyPage(file, target, title) {
+  const sourcePath = legacySourcePaths[file] || "/";
+  const sourceCopy = cleanLines(sourcePath).filter((line) => line.length > 35).slice(0, 4);
+  const destination = target.replace(/\.html$/, "").replace(/-/g, " ");
+  return {
+    file,
+    title,
+    sourcePath,
+    heroTitle: title,
+    summary: `${title} content is represented in the updated prototype structure.`,
+    lead: `${title} in the updated navigation`,
+    paragraphs: sourceCopy.length
+      ? sourceCopy
+      : [
+          `This prototype keeps a visible page for ${title.toLowerCase()} so legacy content has a clear home during the IA restructure.`,
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante facilisis, sed cursus neque gravida.",
+          "Curabitur blandit tempus porttitor. Donec ullamcorper nulla non metus auctor fringilla.",
+        ],
+    cards: [
+      ["Updated destination", `This content is consolidated under ${destination}.`],
+      ["Prototype purpose", "The page remains available so stakeholders can review the proposed mapping instead of landing on a blank placeholder."],
+      ["Next step", "Final implementation can use redirects once page mapping and copy are approved."],
+    ],
+    cta: ["View Updated Page", target],
+  };
 }
 
 function css() {
@@ -1206,10 +1308,24 @@ function main() {
   }
   for (const [file, target, title] of legacyRedirects) {
     if (!fs.existsSync(path.join(root, file))) {
-      fs.writeFileSync(path.join(root, file), redirectHtml(file, target, title));
+      fs.writeFileSync(path.join(root, file), html(legacyPage(file, target, title)));
     }
   }
-  fs.writeFileSync(path.join(root, "login.html"), redirectHtml("login.html", "financial-assistance.html", "Login"));
+  fs.writeFileSync(path.join(root, "login.html"), html({
+    file: "login.html",
+    title: "Login",
+    sourcePath: "/",
+    heroTitle: "Login",
+    summary: "A placeholder for the existing login pathway in the prototype.",
+    lead: "Existing login pathway",
+    paragraphs: [
+      "The current public site includes a Login link in the header. This prototype keeps that pathway visible so the header and account-access layout can be reviewed.",
+      "Final implementation should retain the existing authentication destination or integration used by Rise Above.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante facilisis, sed cursus neque gravida.",
+    ],
+    cards: [["Account access", "Placeholder for the existing login integration."], ["Support pathway", "People seeking financial assistance should use Get Support instead of Login."], ["Implementation note", "Confirm the current authentication endpoint before launch."]],
+    cta: ["Get Support", "financial-assistance.html"],
+  }));
 }
 
 main();
