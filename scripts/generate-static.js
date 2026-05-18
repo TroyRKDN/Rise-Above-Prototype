@@ -1174,11 +1174,11 @@ body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ari
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 .site-header { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 12px rgba(0,0,0,.08); }
-.header-main { max-width: none; min-height: 136px; margin: 0 auto; padding: 18px clamp(72px, 8vw, 300px) 14px clamp(32px, 5vw, 72px); display: grid; grid-template-columns: 256px minmax(0, 1fr) auto; grid-template-rows: 50px 44px; column-gap: 34px; align-items: center; }
+.header-main { max-width: none; min-height: 136px; margin: 0 auto; padding: 18px clamp(72px, 20vw, 550px) 14px clamp(32px, 5vw, 72px); display: grid; grid-template-columns: 256px minmax(0, 1fr) auto; grid-template-rows: 50px 44px; column-gap: 34px; align-items: center; }
 .brand { grid-row: 1 / 3; align-self: center; }
 .brand img { width: 226px; }
 .nav-primary, .nav-secondary { display: flex; align-items: center; text-transform: uppercase; letter-spacing: 0; }
-.nav-primary { grid-column: 2 / 4; grid-row: 2; justify-content: space-between; justify-self: end; width: min(100%, 1000px); align-self: end; padding-bottom: 6px; font-family: Montserrat, Arial, sans-serif; font-size: 15px; font-weight: 600; }
+.nav-primary { grid-column: 2 / 4; grid-row: 2; justify-content: space-between; justify-self: end; width: min(100%, 860px); align-self: end; padding-bottom: 6px; font-family: Montserrat, Arial, sans-serif; font-size: 15px; font-weight: 600; }
 .nav-secondary { grid-column: 3; grid-row: 1; gap: 14px; justify-content: flex-end; font-size: 16px; text-transform: none; }
 nav a { text-decoration: none; padding: 10px 0; white-space: nowrap; }
 .nav-group { position: relative; }
