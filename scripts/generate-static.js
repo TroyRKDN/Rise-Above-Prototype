@@ -876,10 +876,6 @@ function footerHtml() {
     .join("");
   return `
     <footer class="site-footer">
-      <div class="footer-cta">
-        <h2>Rise Above provides assistance & support for cancer patients of any age</h2>
-        <a class="btn btn-light" href="financial-assistance.html">Apply for Assistance</a>
-      </div>
       <div class="footer-main">
         <div class="footer-brand">
           <img src="${localAsset("https://rariseabovecbr.blob.core.windows.net/assets/uploads/cms_nova/header-footer/RA-Footer%20Logo.svg") || localAsset("https://rariseabovecbr.blob.core.windows.net/assets/uploads/cms_nova/header-footer/RA-Header%20Logo.svg")}" alt="Rise Above">
@@ -963,7 +959,6 @@ function standardBody(page) {
     <section class="body-section">
       ${page.lead ? `<h2>${esc(page.lead)}</h2>` : ""}
       <div class="copy-block">${paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}</div>
-      ${page.formNote ? `<div class="form-placeholder"><strong>Prototype note</strong><p>${esc(page.formNote)}</p></div>` : ""}
       ${page.faq ? faqHtml(page.faq) : ""}
       ${cards.length ? `<div class="info-grid">${cards.map(card).join("")}</div>` : ""}
       ${page.cta ? `<div class="page-actions"><a class="btn btn-primary" href="${page.cta[1]}">${esc(page.cta[0])}</a></div>` : ""}
@@ -1077,11 +1072,11 @@ body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ari
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 .site-header { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 2px 12px rgba(0,0,0,.08); }
-.header-main { max-width: 1440px; min-height: 136px; margin: 0 auto; padding: 18px 72px 14px; display: grid; grid-template-columns: 256px minmax(0, 1fr) auto; grid-template-rows: 50px 44px; column-gap: 34px; align-items: center; }
+.header-main { max-width: none; min-height: 136px; margin: 0 auto; padding: 18px clamp(72px, 8vw, 300px) 14px clamp(32px, 5vw, 72px); display: grid; grid-template-columns: 256px minmax(0, 1fr) auto; grid-template-rows: 50px 44px; column-gap: 34px; align-items: center; }
 .brand { grid-row: 1 / 3; align-self: center; }
 .brand img { width: 226px; }
 .nav-primary, .nav-secondary { display: flex; align-items: center; text-transform: uppercase; letter-spacing: 0; }
-.nav-primary { grid-column: 2 / 4; grid-row: 2; justify-content: space-between; width: 100%; align-self: end; padding-bottom: 6px; font-family: Montserrat, Arial, sans-serif; font-size: 15px; font-weight: 600; }
+.nav-primary { grid-column: 2 / 4; grid-row: 2; justify-content: space-between; justify-self: end; width: min(100%, 1000px); align-self: end; padding-bottom: 6px; font-family: Montserrat, Arial, sans-serif; font-size: 15px; font-weight: 600; }
 .nav-secondary { grid-column: 3; grid-row: 1; gap: 14px; justify-content: flex-end; font-size: 16px; text-transform: none; }
 nav a { text-decoration: none; padding: 10px 0; white-space: nowrap; }
 .nav-group { position: relative; }
@@ -1144,8 +1139,6 @@ h3 { margin: 0 0 10px; font-family: Montserrat, Arial, sans-serif; font-size: 22
 .copy-block p { margin: 0 0 18px; color: var(--ink); font-size: 16px; }
 .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 34px; }
 .info-card a { display: inline-block; margin-top: 8px; }
-.form-placeholder { margin: 30px 0; padding: 24px; border: 2px dashed var(--line); border-radius: 8px; background: var(--cream); }
-.form-placeholder p { margin-bottom: 0; color: var(--muted); }
 .faq-list { display: grid; gap: 12px; margin-top: 24px; }
 details { border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; background: var(--white); }
 summary { cursor: pointer; font-weight: 700; font-family: Montserrat, Arial, sans-serif; }
@@ -1169,8 +1162,6 @@ details p { margin: 12px 0 0; color: var(--muted); }
 .partner-section.foundation .logo-card img, .partner-section.social .logo-card img { max-width: 260px; height: 120px; }
 .logo-card span { font-weight: 700; font-family: Montserrat, Arial, sans-serif; font-size: 14px; }
 .site-footer { background: var(--purple-dark); color: var(--white); }
-.footer-cta { padding: 54px max(24px, calc((100% - 1180px) / 2)); display: flex; justify-content: space-between; gap: 24px; align-items: center; background: var(--purple); }
-.footer-cta h2 { max-width: 760px; color: var(--white); font-size: clamp(28px, 3vw, 44px); }
 .footer-main { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 54px 0; display: grid; grid-template-columns: 260px 1fr; gap: 56px; }
 .footer-brand img { width: 190px; margin-bottom: 18px; }
 .footer-brand p { color: #f3dff3; }
@@ -1198,7 +1189,7 @@ details p { margin: 12px 0 0; color: var(--muted); }
   .hero-content, .routing-section, .supporting-section, .body-section { width: min(100% - 40px, 100%); }
   .impact-section { padding-left: 20px; padding-right: 20px; }
   .intent-grid, .stats-grid, .supporting-section, .info-grid, .logo-grid, .partner-section.foundation .logo-grid, .partner-section.social .logo-grid, .footer-main, .footer-columns { grid-template-columns: 1fr; }
-  .footer-cta, .footer-bottom { display: block; }
+  .footer-bottom { display: block; }
 }
 `;
 }
